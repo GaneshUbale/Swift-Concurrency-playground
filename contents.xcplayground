@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='7.0' target-platform='ios' swift-version='6' display-mode='rendered' buildActiveScheme='true' importAppTypes='true'>
+    <pages>
+        <page name='Index'/>
+        <page name='Introduction to async,await Syntax'/>
+        <page name='Task Cancellation'/>
+        <page name='Error Handling in Tasks'/>
+        <page name='Detached Tasks'/>
+        <page name='Task Groups'/>
+        <page name='Discarding Task Groups'/>
+        <page name='Resuming Work withThrowingDiscardingTaskGroup'/>
+        <page name='Structured vs. Unstructured Tasks'/>
+        <page name='Manual Lifetime Management of Unstructured Tasks'/>
+        <page name='Managing Task Priorities'/>
+        <page name='Task yield vs Task sleep'/>
+        <page name='Task Local Storage'/>
+        <page name='Running Tasks in SwiftUI'/>
+        <page name='Task Timeout Handler Using Task Groups'/>
+        <page name='Limiting Concurrent Tasks in a Task Group'/>
+        <page name='Limiting Concurrent Tasks in a Task Group Handeled Error'/>
+        <page name='Using Immediate Tasks'/>
+    </pages>
+</playground>
