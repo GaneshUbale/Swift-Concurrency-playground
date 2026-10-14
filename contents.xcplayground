@@ -19,5 +19,6 @@
         <page name='Limiting Concurrent Tasks in a Task Group'/>
         <page name='Limiting Concurrent Tasks in a Task Group Handeled Error'/>
         <page name='Using Immediate Tasks'/>
+        <page name='Async Streams'/>
     </pages>
 </playground>

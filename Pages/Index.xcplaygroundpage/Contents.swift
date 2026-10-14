@@ -21,6 +21,7 @@
 //: * [15. Limiting Concurrent Tasks in a Task Group](Limiting%20Concurrent%20Tasks%20in%20a%20Task%20Group)
 //: * [16. Limiting Concurrent Tasks in a Task Group Handeled Error](Limiting%20Concurrent%20Tasks%20in%20a%20Task%20Group%20Handeled%20Error)
 //: * [17. Using Immediate Tasks](Using%20Immediate%20Tasks)
+//: * [18. Async Streams](Async%20Streams)
 //:
 //:
 //: > **Tip:** To make these links clickable, turn on rendering by selecting **Editor > Show Rendered Markup** from the top menu.

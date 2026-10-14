@@ -43,6 +43,7 @@ Key pages include:
 - `Limiting Concurrent Tasks in a Task Group`
 - `Limiting Concurrent Tasks in a Task Group Handeled Error`
 - `Using Immediate Tasks`
+- `Async Streams`
 
 ## Why this project matters
 
