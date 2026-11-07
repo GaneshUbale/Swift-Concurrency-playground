@@ -44,6 +44,9 @@ Key pages include:
 - `Limiting Concurrent Tasks in a Task Group Handeled Error`
 - `Using Immediate Tasks`
 - `Async Streams`
+- `AsyncSequence Operations`
+- `Sendable`
+- `Actors and Actor Isolation`
 
 ## Why this project matters
 

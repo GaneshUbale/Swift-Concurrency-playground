@@ -20,5 +20,8 @@
         <page name='Limiting Concurrent Tasks in a Task Group Handeled Error'/>
         <page name='Using Immediate Tasks'/>
         <page name='Async Streams'/>
+        <page name='AsyncSequence Operations'/>
+        <page name='Actors and Actor Isolation'/>
+        <page name='Sendable'/>
     </pages>
 </playground>
