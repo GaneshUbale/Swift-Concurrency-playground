@@ -25,28 +25,29 @@ The project is organized as a step-by-step journey. Each page focuses on a speci
 
 The project contains a collection of interactive pages under `Pages/`, each representing a lesson or example.
 
-Key pages include:
+Follow the lessons in this order, from fundamentals to more advanced topics:
 
-- `Introduction to async,await Syntax`
-- `Task Cancellation`
-- `Error Handling in Tasks`
-- `Detached Tasks`
-- `Task Groups`
-- `Discarding Task Groups`
-- `Structured vs. Unstructured Tasks`
-- `Manual Lifetime Management of Unstructured Tasks`
-- `Managing Task Priorities`
-- `Task yield vs Task sleep`
-- `Task Local Storage`
-- `Running Tasks in SwiftUI`
-- `Task Timeout Handler Using Task Groups`
-- `Limiting Concurrent Tasks in a Task Group`
-- `Limiting Concurrent Tasks in a Task Group Handeled Error`
-- `Using Immediate Tasks`
-- `Async Streams`
-- `AsyncSequence Operations`
-- `Sendable`
-- `Actors and Actor Isolation`
+1. `Introduction to async,await Syntax`
+2. `Task yield vs Task sleep`
+3. `Task Cancellation`
+4. `Error Handling in Tasks`
+5. `Structured vs. Unstructured Tasks`
+6. `Task Groups`
+7. `Discarding Task Groups`
+8. `Resuming Work withThrowingDiscardingTaskGroup`
+9. `Task Timeout Handler Using Task Groups`
+10. `Limiting Concurrent Tasks in a Task Group`
+11. `Limiting Concurrent Tasks in a Task Group Handeled Error`
+12. `Managing Task Priorities`
+13. `Task Local Storage`
+14. `Manual Lifetime Management of Unstructured Tasks`
+15. `Detached Tasks`
+16. `Running Tasks in SwiftUI`
+17. `Actors and Actor Isolation`
+18. `Sendable`
+19. `Async Streams`
+20. `AsyncSequence Operations`
+21. `Using Immediate Tasks`
 
 ## Why this project matters
 
@@ -70,14 +71,7 @@ This project helps developers build intuition by showing the same ideas in small
 
 ## Typical learning flow
 
-A recommended path is:
-
-1. Start with `async` and `await`
-2. Move to `Task` basics and cancellation
-3. Learn error handling and task groups
-4. Explore task priorities and task-local values
-5. Study bounded concurrency and failure isolation
-6. Apply these ideas in UI-driven async code
+The lesson sequence starts with async/await fundamentals, then introduces task scheduling, cancellation, errors, and structured concurrency. It builds toward task groups and bounded concurrency before covering priorities, task-local values, unstructured task lifetimes, and SwiftUI. Actors and `Sendable` introduce data safety, followed by asynchronous sequences and the specialized immediate-task APIs.
 
 ## Example theme
 
