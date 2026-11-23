@@ -76,6 +76,31 @@ Task {
 }
 
 /*:
+ ## How Asynchronous Work Flows
+
+ When an awaited operation suspends, its task pauses without keeping a thread
+ blocked just to wait. The executor can run other work while the operation,
+ such as network I/O, is in progress. Once the operation has a result, the
+ task becomes ready to resume.
+
+ ```text
+ Task A                Executor thread          Network I/O
+   |                          |                      |
+   |-- await fetch() -------------------------------->|
+   | suspends                  |                      |-- in progress
+   |                           |-- can run other work |
+   |                           |                      |-- response ready
+   |                           |<-- task is ready ----|
+   |<-- executor resumes it ---|                      |
+   | continues with result     |                      |
+ ```
+
+ `await` is a possible suspension point: an operation that finishes immediately
+ might not suspend. A resumed task may run on a different thread; `async` does
+ not promise a new thread.
+*/
+
+/*:
  ---
  ## 🧠 Mental Model
 
