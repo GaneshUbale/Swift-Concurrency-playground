@@ -108,6 +108,17 @@ Task {
  ## 3. Actor reentrancy
 
  An actor does not mean “only one task can ever run.” Instead, it means the actor’s mutable state is isolated and protected. A task can suspend while the actor is waiting on an async operation, and later resume without exposing mutable state to another task.
+ 
+ 
+ actors do not lock across await suspension points. Whenever an actor-isolated function hits an await, it suspends execution and allows other tasks to enter the actor and read or mutate the actor's mutable properties before the original function resumes.
+
+## How to prevent state bugs from reentrancy
+ 
+Because Swift allows reentrancy by design (to prevent deadlocks and keep actors making forward progress), you have to structure your code around it:
+* Mutate state synchronously: Keep all state reads, validations, and mutations together without an await in between. Synchronous code inside an actor cannot be interrupted.
+* Re-check state after await: If you must perform an await (like a network call) before updating state, re-verify your actor's state after the await resumes before committing changes.
+* Cache in-flight Tasks: If multiple callers might trigger the same async work simultaneously (e.g., fetching an image or token), store the running Task in a mutable property on the actor so subsequent callers await the existing task instead of starting duplicate work.
+
  */
 
 actor MessageLogger {
