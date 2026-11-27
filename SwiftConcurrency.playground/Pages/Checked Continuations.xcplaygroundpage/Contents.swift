@@ -21,8 +21,10 @@
  */
 
 import Foundation
+import PlaygroundSupport
+PlaygroundPage.current.needsIndefiniteExecution = true
 
-func fetchStatus(completion: @escaping (String) -> Void) {
+func fetchStatus(completion: @escaping @Sendable (String) -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
         completion("Ready")
     }
@@ -41,6 +43,7 @@ func fetchStatusAsync() async -> String {
 }
 
 Task {
+    print("Started:")
     let status = await fetchStatusAsync()
     print("Status: \(status)")
 }
@@ -59,7 +62,7 @@ struct Profile {
     let name: String
 }
 
-func fetchProfile(completion: @escaping (Result<Profile, ProfileError>) -> Void) {
+func fetchProfile(completion: @escaping @Sendable (Result<Profile, ProfileError>) -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
         completion(.success(Profile(name: "Ganesh")))
     }
@@ -202,7 +205,13 @@ Task {
 func postLessonFinishedNotification() {
     NotificationCenter.default.post(name: .lessonDidFinish, object: nil)
 }
-
+Task {
+    try! await Task.sleep(for: .seconds(2))
+    postLessonFinishedNotification()
+    
+    PlaygroundPage.current.needsIndefiniteExecution = false
+}
+ 
 /*:
  If you must bridge an older one-shot observer API, use a checked continuation in its observer callback and remove the observer when it fires. Also make sure cancellation removes the observer and resumes the continuation exactly once. Do not leave a block observer registered after the async wait has completed.
 
