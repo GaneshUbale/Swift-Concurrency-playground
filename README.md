@@ -91,3 +91,11 @@ The playground demonstrates a bounded-concurrency pattern where only a limited n
 This is an educational project intended for exploration and experimentation. It is best used as a practical reference for learning Swift concurrency patterns in a visual, interactive format.
 
 If you are learning Swift concurrency for the first time, this project is a good way to move from beginner concepts to more advanced patterns with real examples.
+
+## Swift Concurrency Interview Questions
+
+- [Swift Concurrency Interview Questions That Reveal Real Experience by RAHUL NIMJE](https://medium.com/@rahulnimje94/swift-concurrency-interview-questions-that-reveal-real-experience-572d6fddb223)
+
+## Behind the Scenes of Swift Concurrency
+
+- [Behind the Scenes of Async Functions by Vitaly Batrakov](https://vbat.dev/behind-the-scenes-of-async-functions)
