@@ -25,6 +25,7 @@
 //: * [19. Async Streams](Async%20Streams)
 //: * [20. AsyncSequence Operations](AsyncSequence%20Operations)
 //: * [21. Using Immediate Tasks](Using%20Immediate%20Tasks)
+//: * [22. Checked Continuations](Checked%20Continuations)
 //:
 //:
 //: > **Tip:** To make these links clickable, turn on rendering by selecting **Editor > Show Rendered Markup** from the top menu.

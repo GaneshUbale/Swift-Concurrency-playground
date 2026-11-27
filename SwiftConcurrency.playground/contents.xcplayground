@@ -23,5 +23,6 @@
         <page name='Async Streams'/>
         <page name='AsyncSequence Operations'/>
         <page name='Using Immediate Tasks'/>
+        <page name='Checked Continuations'/>
     </pages>
 </playground>
