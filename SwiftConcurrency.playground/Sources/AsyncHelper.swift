@@ -10,9 +10,13 @@ import PlaygroundSupport
 /// Runs an asynchronous operation and keeps the playground alive until it finishes.
 ///
 /// Use this helper in playground pages that need to execute `async` or `throws`
-/// code from top-level synchronous scope. It marks the current playground page
-/// for indefinite execution, starts the operation in an unstructured task, and
+/// code from top-level synchronous scope. Call it once at the top level of a
+/// playground page, not from a function or type. It marks the current page for
+/// indefinite execution, starts the operation in an unstructured task, and
 /// finishes execution after the operation completes.
+///
+/// This is a playground lifecycle helper, not an app concurrency API. In app
+/// code, use `Task` when unstructured asynchronous work is appropriate.
 ///
 /// If `operation` throws, the helper prints the error to the console and still
 /// finishes the playground execution.

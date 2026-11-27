@@ -38,10 +38,6 @@ func main() async {
     print("Received: \(user)")
 }
 
-// Run the async function from a synchronous playground context
-Task {
-    await main()
-}
 /*:
  ## 3. Handling Errors with `async throws`
  
@@ -71,7 +67,12 @@ func checkStatus() async {
     }
 }
 
-Task {
+
+runAsync {
+    print("--- Example 1: Calling an Async Function ---")
+    await main()
+
+    print("\n--- Example 2: Handling an Async Throwing Function ---")
     await checkStatus()
 }
 

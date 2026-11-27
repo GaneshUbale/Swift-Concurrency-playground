@@ -25,19 +25,9 @@ func readFile() async throws -> String {
     throw FileError.fileNotFound
 }
 
-// Internal error handling
-Task {
-    do {
-        let content = try await readFile()
-        print("Content: \(content)")
-    } catch {
-        print("Handled inside task: \(error)")
-    }
-}
-
 /*:
  ## 2. Propagating Errors with `Task.value`
- 
+
  When creating an unstructured task that returns a value or throws, accessing `task.value` requires `try await`.
  */
 
@@ -46,7 +36,7 @@ func fetchRemoteConfiguration() async -> String {
         // Imagine a network call throwing an error here
         try await readFile()
     }
-    
+
     do {
         // Calling .value will re-throw the error caught inside the task
         let config = try await task.value
@@ -57,12 +47,24 @@ func fetchRemoteConfiguration() async -> String {
     }
 }
 
-Task {
+// Internal error handling and propagating errors with `Task.value`
+runAsync {
+    print("--- Example 1: Catching Errors Inside a Task ---")
+    let handlingTask = Task {
+        do {
+            let content = try await readFile()
+            print("Content: \(content)")
+        } catch {
+            print("Handled inside task: \(error)")
+        }
+    }
+    await handlingTask.value
+
+    print("\n--- Example 2: Propagating Errors with Task.value ---")
+    
     let config = await fetchRemoteConfiguration()
     print(config)
 }
-
-
 
 /*:
  ---

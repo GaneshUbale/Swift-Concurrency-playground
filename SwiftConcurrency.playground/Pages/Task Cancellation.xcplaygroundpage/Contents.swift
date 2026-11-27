@@ -53,28 +53,11 @@ func fetchDashboard2(label: String, for seconds: Int) async throws {
     print("✅\(label) dashboard: fetch completed..")
 }
 
-//Task {
-//    print("--- Task.checkCancellation() ---")
-//    let downloadTask = Task {
-//        do {
-//            try await fetchDashboard2(label: "Marketing", for: 5)
-//        } catch is CancellationError {
-//            print("🛑 Dashboard loading failed or was cancelled.")
-//        } catch {
-//            print("Dashboard loading failed with error: \(error)")
-//        }
-//    }
-//    downloadTask.cancel() // this gets calles in deinit() or if you want to restart so cancel previous and start gain
-////    await downloadTask.value
-//}
-
 /*:
 ## 3. Cancellation Propagation in Structured Concurrency
 
  Structured child tasks inherit cancellation from their parent. The parent waits for the child task to finish winding down before it returns.
  */
-
-// The main parent task 
 let parentTask = Task {
     do {
         try await withThrowingTaskGroup(of: Void.self) { group in
@@ -87,21 +70,12 @@ let parentTask = Task {
             group.addTask {
                 try await fetchDashboard2(label: "Profile", for: 5)
             }
-            // Wait for children to finish
             try await group.waitForAll()
         }
     } catch {
         print("🛑 Parent: Dashboard loading failed or was cancelled.")
     }
 }
-// Simulate the user clicking "Back" after 2 second
-Task {
-    // Cancel the main task after 2 seconds, which propagates to child tasks
-    try? await Task.sleep(nanoseconds: 2_000_000_000)
-    print("\n📱 User left the screen! Cancelling parent task...\n")
-    parentTask.cancel()
-}
-
 /*:
  ## 4. Triggering and Handling Cancellation
  
@@ -128,9 +102,45 @@ func executeCancellationExample() async {
     await task.value // ensures waits for the task to finish and retrieves its result.
 }
 
-// Run the examples from the synchronous playground context.
-Task {
-    print("--- Unstructured task cancellation ---")
+runAsync {
+    // Example 1: Check Task.isCancelled in a long-running operation.
+    print("--- Example 1: Task.isCancelled ---")
+    let dashboardTask = Task {
+        try await fetchDashboard(label: "Sales", for: 5)
+    }
+    try? await Task.sleep(nanoseconds: 2_000_000_000)
+    dashboardTask.cancel()
+    do {
+        try await dashboardTask.value
+    } catch {
+        print("Dashboard loading failed: \(error)")
+    }
+
+    // Example 2: Throw CancellationError with Task.checkCancellation().
+    print("\n--- Example 2: Task.checkCancellation() ---")
+    let checkedTask = Task {
+        try await fetchDashboard2(label: "Marketing", for: 5)
+    }
+    try? await Task.sleep(nanoseconds: 2_000_000_000)
+    checkedTask.cancel()
+    do {
+        try await checkedTask.value
+    } catch is CancellationError {
+        print("🛑 Dashboard loading was cancelled.")
+    } catch {
+        print("Dashboard loading failed with error: \(error)")
+    }
+
+    // Example 3: Cancel a parent task and observe cancellation propagate to its children.
+    print("\n--- Example 3: Cancellation propagation ---")
+    
+    try? await Task.sleep(nanoseconds: 2_000_000_000)
+    print("\n📱 User left the screen! Cancelling parent task...\n")
+    parentTask.cancel()
+    await parentTask.value
+
+    // Example 4: Cancel an unstructured task and handle its cancellation.
+    print("\n--- Example 4: Unstructured task cancellation ---")
     await executeCancellationExample()
 }
 

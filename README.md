@@ -69,6 +69,21 @@ This project helps developers build intuition by showing the same ideas in small
 4. Read the example, change values, and observe how concurrency behavior changes.
 5. Use the code as a reference when implementing async features in your own apps.
 
+## Running async work in playground pages
+
+Playground pages need lifecycle handling to stay open while asynchronous work
+is running. The `runAsync` helper in
+[`AsyncHelper.swift`](./SwiftConcurrency.playground/Sources/AsyncHelper.swift)
+provides that support for this playground.
+
+Use exactly one `runAsync { ... }` call at the top level of each page, and put
+that page's asynchronous work in its closure. Do not call `runAsync` from a
+function or type, or use multiple calls on one page; the helper finishes the
+page when its operation completes. `runAsync` is only for playground execution,
+not for production app code. In an app, use Swift concurrency directly—for
+example, use `Task { ... }` when starting unstructured asynchronous work from a
+synchronous context, or structured concurrency when it fits.
+
 ## Typical learning flow
 
 The lesson sequence starts with async/await fundamentals, then introduces task scheduling, cancellation, errors, and structured concurrency. It builds toward task groups and bounded concurrency before covering priorities, task-local values, unstructured task lifetimes, and SwiftUI. Actors and `Sendable` introduce data safety, followed by asynchronous sequences and the specialized immediate-task APIs.
