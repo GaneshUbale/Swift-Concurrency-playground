@@ -23,7 +23,7 @@ func fetchProfileData() async throws -> (String, Int) {
     async let followerCount = 42
     
     // Execution waits here for both child tasks to finish
-    return try await (username, followerCount)
+    return await (username, followerCount)
 }
 
 Task {
@@ -201,7 +201,7 @@ struct SearchDemoView: View {
     }
 }
 
-PlaygroundPage.current.liveView = UIHostingController(rootView: SearchDemoView())
+PlaygroundPage.current.setLiveView(SearchDemoView())
 
 /*:
  ---
