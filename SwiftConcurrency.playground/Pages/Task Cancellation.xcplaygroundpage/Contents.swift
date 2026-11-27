@@ -58,6 +58,8 @@ func fetchDashboard2(label: String, for seconds: Int) async throws {
 
  Structured child tasks inherit cancellation from their parent. The parent waits for the child task to finish winding down before it returns.
  */
+
+// The main parent task 
 let parentTask = Task {
     do {
         try await withThrowingTaskGroup(of: Void.self) { group in
@@ -133,7 +135,7 @@ runAsync {
 
     // Example 3: Cancel a parent task and observe cancellation propagate to its children.
     print("\n--- Example 3: Cancellation propagation ---")
-    
+    // Simulate the user clicking "Back" after 2 second
     try? await Task.sleep(nanoseconds: 2_000_000_000)
     print("\n📱 User left the screen! Cancelling parent task...\n")
     parentTask.cancel()
