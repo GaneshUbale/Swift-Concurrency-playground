@@ -40,6 +40,8 @@ public func runAsync(_ operation: @escaping @Sendable () async throws -> Void) {
         } catch {
             print("Error: \(error)")
         }
-        PlaygroundPage.current.finishExecution()
+        await MainActor.run {
+            PlaygroundPage.current.finishExecution()
+        }
     }
 }

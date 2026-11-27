@@ -32,10 +32,6 @@ func processHeavyImageBatch(images: [String]) async {
 
 let images = ["a.jpg", "b.jpg", "c.jpg", "d.jpg"]
 
-Task {
-    await processHeavyImageBatch(images: images)
-}
-
 /*:
  ## 2. Delaying Execution with `Task.sleep()`
  
@@ -46,15 +42,17 @@ func pollServerStatus() async throws {
     print("Checking server status...")
     
     // Modern Swift Duration syntax (Swift 5.7+)
-    try await Task.sleep(for: .seconds(3))
+    try await Task.sleep(for: .seconds(0.1))
     
     // Alternative clock-based sleep syntax
-    try await Task.sleep(until: .now + .seconds(2), clock: .continuous)
+    try await Task.sleep(until: .now + .seconds(0.1), clock: .continuous)
     
     print("Server check complete.")
 }
 
-Task {
+runAsync {
+    await processHeavyImageBatch(images: images)
+
     do {
         try await pollServerStatus()
     } catch {
